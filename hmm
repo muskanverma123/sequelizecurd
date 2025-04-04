@@ -1,0 +1,30 @@
+
+
+export const getUserWithProjects = async (req, res) => {
+  const { userId } = req.params; 
+  try {
+    const user = await User.findByPk(userId, {
+      include: Project,  
+    });
+
+    if (user) {
+      return res.status(200).json({
+        status: 200,
+        message: 'User and associated projects fetched successfully!',
+        data: {
+          user: user.name,
+          projects: user.Projects.map(project => project.project_name)
+        }
+      });
+    } else {
+   
+      return res.status(404).json({
+        status: 404,
+        message: `User with ID ${userId} not found.`,
+      });
+    }
+  } catch (error) {
+   
+    return catchError(res, error);
+  }
+};
