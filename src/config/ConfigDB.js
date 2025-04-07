@@ -6,6 +6,7 @@ const sequelize = new Sequelize('test_three','root','root',{
 })
 const ConnectDB = async(req,res)=>{
     try{
+        await sequelize.authenticate()
         console.log("database is connected successfully")
     }catch(error){
         console.log("database is not connected")
