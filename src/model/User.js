@@ -51,6 +51,6 @@ User.associate = function (models) {
         foreignKey: "userId",     
         otherKey: "projectId",    
       });
-}
+}                                                                                               
 
 export default User
